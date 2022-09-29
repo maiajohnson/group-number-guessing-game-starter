@@ -5,6 +5,11 @@ const PORT = 5000;
 let randomNumber = 1;
 let guessList = [];
 
+// let guessMessage = {
+//   playerA: '',
+//   playerB: ''
+// };
+
 // This must be added before GET & POST routes.
 app.use(bodyParser.urlencoded({extended:true}))
 
@@ -18,9 +23,17 @@ app.post('/guess', (req, res) => {
 
   guessList.push(newGuesses);
   console.log('the guess list is now:', guessList);
-
+ 
   res.sendStatus(201);
 });
+
+app.get('/guess', (req, res) => {
+  console.log('in GET thing')
+
+  compareGuess();
+  console.log('GET guessMessage', guessList);
+  res.send(guessList);
+})
 
 // app.get(
   
@@ -34,3 +47,20 @@ app.post('/guess', (req, res) => {
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
 })
+
+  function compareGuess() {
+  
+
+  if (guessList[guessList.length-1].playerAGuess < randomNumber) {
+    guessList[guessList.length-1].guessMessageA = "Too low";
+  } else if (guessList[guessList.length-1].playerAGuess > randomNumber) {
+    guessList[guessList.length-1].guessMessageA = "Too High";
+  } else {guessList[guessList.length-1].guessMessageA = "Winner!"};
+
+  if (guessList[guessList.length-1].playerBGuess < randomNumber) {
+    guessList[guessList.length-1].guessMessageB = "Too low";
+  } else if (guessList[guessList.length-1].playerBGuess > randomNumber) {
+    guessList[guessList.length-1].guessMessageB = "Too High";
+  } else {guessList[guessList.length-1].guessMessageB = "Winner!"};
+
+} 

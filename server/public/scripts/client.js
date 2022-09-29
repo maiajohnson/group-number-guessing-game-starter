@@ -5,6 +5,8 @@ function handleReady() {
   console.log("jquery is loaded!")
 
   $('#submitBtn').on('click', onGuessSubmit);
+  $('#submitBtn').on('click', onGetWinner);
+
 }
 
 function onGuessSubmit(evt) {
@@ -12,7 +14,9 @@ function onGuessSubmit(evt) {
 
   let playerNumbers = {
     playerAGuess: $('#playerA').val(),
-    playerBGuess: $('#playerB').val()
+    guessMessageA: '',
+    playerBGuess: $('#playerB').val(),
+    guessMessageB: ''
   }
   console.log('in onGuessSubmit', playerNumbers);
 
@@ -28,5 +32,24 @@ function onGuessSubmit(evt) {
     .catch((err) => {
       console.log('POST /guess error', err);
 
+    })
+}
+
+function onGetWinner(evt) {
+  evt.preventDefault();
+
+  console.log('in onGetWinner');
+
+  $.ajax({
+    url: '/guess',
+    method: 'GET'
+  })
+    .then(response => {
+      console.log('GET Winner', response);
+      
+    })
+
+    .catch((err) => {
+      console.log('GET Winner error', err);n
     })
 }
