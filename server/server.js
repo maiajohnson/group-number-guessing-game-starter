@@ -10,6 +10,9 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('server/public'));
 
 // GET & POST Routes go here
+function randomNumberGenerator() {
+  return Math.floor(Math.random() * (24) + 1);
+};
 
 
 app.listen(PORT, () => {
