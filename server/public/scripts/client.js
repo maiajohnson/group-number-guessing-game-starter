@@ -1,6 +1,5 @@
 $(document).ready(handleReady);
 
-let guessList = [];
 
 function handleReady() {
   console.log("jquery is loaded!")
@@ -16,4 +15,18 @@ function onGuessSubmit(evt) {
     playerBGuess: $('#playerB').val()
   }
   console.log('in onGuessSubmit', playerNumbers);
+
+  $.ajax({
+    url: '/guess',
+    method: 'POST',
+    data: playerNumbers
+  })
+    .then(response => {
+      console.log('POST guesses', response);
+    })
+
+    .catch((err) => {
+      console.log('POST /guess error', err);
+
+    })
 }
