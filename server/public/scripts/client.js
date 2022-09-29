@@ -1,5 +1,6 @@
 $(document).ready(handleReady);
 
+let guessList = [];
 let totalCount = 0;
 
 function handleReady() {
@@ -36,6 +37,7 @@ function onGuessSubmit(evt) {
     })
 
   totalCount++;  
+
   }
 
 function onGetWinner(evt) {
@@ -55,13 +57,14 @@ function onGetWinner(evt) {
           showPlayerAWinner();
         } else { showPlayerBWinner();}
       };
-
+      guessList = response;
     })
 
     .catch((err) => {
       console.log('GET Winner error', err);
     })
 
+    render();
 }
 
 function showRestart() {
@@ -84,6 +87,23 @@ function onRestart() {
   }
 
   function render() {
-    
+    $('#winnerTable').empty();
+   
+   for (let result of guessList) {
+    $('#winnerTable').append(`
+      <tr>
+        <td>${totalCount}</td>
+        <td>${result.playerAGuess}, ${result.guessMessageA}</td>
+        <td>${result.playerBGuess}, ${result.guessMessageB}</td>
+      </tr>
+    `)
+   }
   }
 
+function showPlayerAWinner() {
+  $('#winnerTag').text('Player A is the Winner!');
+}
+
+function showPlayerBWinner() {
+  $('#winnerTag').text('Player B is the Winner!');
+}
