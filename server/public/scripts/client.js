@@ -46,10 +46,17 @@ function onGetWinner(evt) {
   })
     .then(response => {
       console.log('GET Winner', response);
-      
+      if (response[response.length - 1].guessMessageA === 'Winner!' || response[response.length - 1].guessMessageB === 'Winner!') 
+      { showRestart(); };
+    
     })
 
     .catch((err) => {
-      console.log('GET Winner error', err);n
+      console.log('GET Winner error', err);
     })
+
+}
+
+function showRestart() {
+  $('#restartBtn').removeClass('disabled');
 }
