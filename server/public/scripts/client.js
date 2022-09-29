@@ -1,12 +1,13 @@
 $(document).ready(handleReady);
 
+let totalCount = 0;
 
 function handleReady() {
   console.log("jquery is loaded!")
 
   $('#submitBtn').on('click', onGuessSubmit);
   $('#submitBtn').on('click', onGetWinner);
-
+  $('#restartBtn').on('click', onRestart);
 }
 
 function onGuessSubmit(evt) {
@@ -33,7 +34,9 @@ function onGuessSubmit(evt) {
       console.log('POST /guess error', err);
 
     })
-}
+
+  totalCount++;  
+  }
 
 function onGetWinner(evt) {
   evt.preventDefault();
@@ -47,8 +50,12 @@ function onGetWinner(evt) {
     .then(response => {
       console.log('GET Winner', response);
       if (response[response.length - 1].guessMessageA === 'Winner!' || response[response.length - 1].guessMessageB === 'Winner!') 
-      { showRestart(); };
-    
+      { showRestart(); 
+        if (response[response.length - 1].guessMessageA === 'Winner!') {
+          showPlayerAWinner();
+        } else { showPlayerBWinner();}
+      };
+
     })
 
     .catch((err) => {
@@ -60,3 +67,23 @@ function onGetWinner(evt) {
 function showRestart() {
   $('#restartBtn').removeClass('disabled');
 }
+
+function onRestart() {
+  $.ajax({
+    url: '/restart',
+    method: 'GET'
+  })
+    .then(response => {
+      console.log('in restart');
+    })
+    .catch((err) => {
+      console.log('onRestart error', err);
+    })
+
+  totalCount = 0;
+  }
+
+  function render() {
+    
+  }
+

@@ -5,10 +5,6 @@ const PORT = 5000;
 let randomNumber = 1;
 let guessList = [];
 
-// let guessMessage = {
-//   playerA: '',
-//   playerB: ''
-// };
 
 // This must be added before GET & POST routes.
 app.use(bodyParser.urlencoded({extended:true}))
@@ -33,15 +29,15 @@ app.get('/guess', (req, res) => {
   compareGuess();
   console.log('GET guessMessage', guessList);
   res.send(guessList);
-})
+});
 
-// app.get(
-  
-//   function randomNumberGenerator() {
-//   return Math.floor(Math.random() * (24) + 1);
+app.get('/restart', (req, res) => {
+  console.log('in restart');
+  randomNumber = randomNumberGenerator();
+  guessList = [];
+  console.log('random', randomNumber);
+});
 
-
-// });
 
 
 app.listen(PORT, () => {
@@ -64,3 +60,7 @@ app.listen(PORT, () => {
   } else {guessList[guessList.length-1].guessMessageB = "Winner!"};
 
 } 
+
+  function randomNumberGenerator() {
+  return Math.floor(Math.random() * (24) + 1);
+  }
