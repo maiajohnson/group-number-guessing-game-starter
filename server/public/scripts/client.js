@@ -2,11 +2,9 @@ $(document).ready(handleReady);
 
 let guessList = [];
 
-
 function handleReady() {
   console.log("jquery is loaded!")
 
-  
   $('#submitBtn').on('click', onGuessSubmit);
   $('#submitBtn').on('click', onGetWinner);
   $('#restartBtn').on('click', onRestart);
@@ -15,6 +13,11 @@ function handleReady() {
 function onGuessSubmit(evt) {
   evt.preventDefault();
 
+  if ($('#playerA').val() === $('#playerB').val()) {
+    alert('Same Guess, one of you must change!');
+    return;
+  }
+
   let playerNumbers = {
     playerAGuess: $('#playerA').val(),
     guessMessageA: '',
@@ -22,6 +25,8 @@ function onGuessSubmit(evt) {
     guessMessageB: ''
   }
   console.log('in onGuessSubmit', playerNumbers);
+
+ 
 
   $.ajax({
     url: '/guess',
@@ -36,7 +41,6 @@ function onGuessSubmit(evt) {
       console.log('POST /guess error', err);
 
     })
-
  
     $('#playerA').val('');
     $('#playerB').val('');
