@@ -54,10 +54,11 @@ form {
 
 #submitBtn {
     margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 #restartBtn {
-    position: relative;
-    top: 108px;
-    left: 10px;
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }

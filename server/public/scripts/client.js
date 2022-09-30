@@ -102,8 +102,8 @@ function onRestart() {
     $('#winnerTable').append(`
       <tr>
         <td>${i+1}</td>
-        <td>${guessList[i].playerAGuess}, ${guessList[i].guessMessageA}</td>
-        <td>${guessList[i].playerBGuess}, ${guessList[i].guessMessageB}</td>
+        <td>${guessList[i].playerAGuess}; ${guessList[i].guessMessageA}</td>
+        <td>${guessList[i].playerBGuess}; ${guessList[i].guessMessageB}</td>
       </tr>
     `)
    }
