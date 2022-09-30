@@ -1,11 +1,12 @@
 $(document).ready(handleReady);
 
 let guessList = [];
-let totalCount = 0;
+// let totalCount = 0;
 
 function handleReady() {
   console.log("jquery is loaded!")
 
+  
   $('#submitBtn').on('click', onGuessSubmit);
   $('#submitBtn').on('click', onGetWinner);
   $('#restartBtn').on('click', onRestart);
@@ -36,8 +37,8 @@ function onGuessSubmit(evt) {
 
     })
 
-  totalCount++;  
-
+  // totalCount++;  
+  
   }
 
 function onGetWinner(evt) {
@@ -58,13 +59,14 @@ function onGetWinner(evt) {
         } else { showPlayerBWinner();}
       };
       guessList = response;
+      render();
     })
 
     .catch((err) => {
       console.log('GET Winner error', err);
     })
 
-    render();
+    
 }
 
 function showRestart() {
@@ -83,18 +85,18 @@ function onRestart() {
       console.log('onRestart error', err);
     })
 
-  totalCount = 0;
+  // totalCount = 0;
   }
 
   function render() {
     $('#winnerTable').empty();
    
-   for (let result of guessList) {
+    for (let i=0; i < guessList.length; i++) {
     $('#winnerTable').append(`
       <tr>
-        <td>${totalCount}</td>
-        <td>${result.playerAGuess}, ${result.guessMessageA}</td>
-        <td>${result.playerBGuess}, ${result.guessMessageB}</td>
+        <td>${i+1}</td>
+        <td>${guessList[i].playerAGuess}, ${guessList[i].guessMessageA}</td>
+        <td>${guessList[i].playerBGuess}, ${guessList[i].guessMessageB}</td>
       </tr>
     `)
    }
