@@ -38,7 +38,8 @@ function onGuessSubmit(evt) {
     })
 
  
-  
+    $('#playerA').val('');
+    $('#playerB').val('');
   }
 
 function onGetWinner(evt) {

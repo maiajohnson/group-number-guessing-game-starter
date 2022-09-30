@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 const PORT = 5000;
-let randomNumber = 1;
+let randomNumber = randomNumberGenerator();
+console.log('This is the random Number:', randomNumber);
 let guessList = [];
 
 
