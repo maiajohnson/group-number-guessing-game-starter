@@ -2,11 +2,19 @@
     display: none;
 } 
 
+html {
+    background-color: rgb(173, 220, 173);
+}
 body {
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+#header {
+    border: 2px groove teal;
+    padding: 10px;
+    margin-bottom: 10px;
+}
 table, th, td {
     border: 2px solid teal;
     border-collapse: collapse;
@@ -33,6 +41,15 @@ tr:nth-child(odd) {
 form {
     display: inline-grid;
     width: 25%;
+}
+
+#playerA {
+    margin-bottom: 5px;
+}
+
+#playerB {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 #submitBtn {
