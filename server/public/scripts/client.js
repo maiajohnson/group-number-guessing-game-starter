@@ -1,7 +1,7 @@
 $(document).ready(handleReady);
 
 let guessList = [];
-// let totalCount = 0;
+
 
 function handleReady() {
   console.log("jquery is loaded!")
@@ -37,7 +37,7 @@ function onGuessSubmit(evt) {
 
     })
 
-  // totalCount++;  
+ 
   
   }
 
@@ -80,12 +80,14 @@ function onRestart() {
   })
     .then(response => {
       console.log('in restart');
+      guessList = response;
+      render();
     })
     .catch((err) => {
       console.log('onRestart error', err);
     })
 
-  // totalCount = 0;
+
   }
 
   function render() {

@@ -37,6 +37,8 @@ app.get('/restart', (req, res) => {
   guessList = [];
   console.log(guessList);
   console.log('random', randomNumber);
+
+  res.send(guessList);
 });
 
 
