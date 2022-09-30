@@ -86,7 +86,7 @@ function onRestart() {
     .catch((err) => {
       console.log('onRestart error', err);
     })
-
+    $('#restartBtn').addClass('disabled');
 
   }
 
