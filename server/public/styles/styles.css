@@ -2,3 +2,39 @@
     display: none;
 } 
 
+table, th, td {
+    border: 2px solid teal;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+table {
+    width: 75%;
+}
+
+th {
+    background-color: lightgreen;
+}
+
+tr:nth-child(even) {
+    background-color: lightgreen;
+}
+
+tr:nth-child(odd) {
+    background-color: rgb(212, 239, 212);
+}
+
+form {
+    display: inline-grid;
+    width: 25%;
+}
+
+#submitBtn {
+    margin-top: 10px;
+}
+
+#restartBtn {
+    position: relative;
+    top: 108px;
+    left: 10px;
+}
