@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 const PORT = 5000;
+const randomNumberGenerator = require('./random-number.js');
 let randomNumber = randomNumberGenerator();
-console.log('This is the random Number:', randomNumber);
+console.log('random', randomNumber);
 let guessList = [];
 
 
@@ -65,6 +66,3 @@ app.listen(PORT, () => {
 
 } 
 
-  function randomNumberGenerator() {
-  return Math.floor(Math.random() * (24) + 1);
-  }
